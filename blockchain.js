@@ -18,6 +18,21 @@ class Blockchain {
         console.log(this.list);
 
     }
+
+    validate() {
+        for (let i = 1; i < this.list.length; i++) {
+            const currentBlock = this.list[i]
+            const previousBlock = this.list[i - 1]
+            if (currentBlock.hash !== currentBlock.calculateHash()) {
+                return false
+            }
+            if (currentBlock.previousHash !== previousBlock.hash) {
+                return false
+            }
+        }
+        return true
+
+    }
 }
 
 
